@@ -19,7 +19,7 @@ const TodoList = () => {
 
   return (
     <div>
-      <h1>Я пожилая тудушка</h1>
+      <h1>Я пожилая тудушка (тест)</h1>
       <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
       <button onClick={handleAddTodo}>+</button>
       <ul>
