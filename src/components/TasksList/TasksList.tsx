@@ -4,11 +4,11 @@ import TasksListItem from '../TasksListItem/TasksListItem';
 
 const TasksList = () => {
   return (
-    <>
-      <TasksListItem name={'asd'} />
-      <TasksListItem name={'asd'} />
-      <TasksListItem name={'asd'} />
-    </>
+    <div className="task-list">
+      <TasksListItem name={'я'} />
+      <TasksListItem name={'люблю'} />
+      <TasksListItem name={'Максима <3'} />
+    </div>
   );
 };
 
