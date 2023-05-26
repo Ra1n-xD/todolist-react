@@ -1,0 +1,28 @@
+.task-list-item {
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(75, 75, 75);
+}
+
+.task-buttons button {
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: transparent;
+  color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  cursor: pointer;
+}
+
+.btn-favorite:hover {
+  color: rgb(255, 217, 0);
+}
+
+.btn-delete:hover {
+  color: #ff0101;
+}
