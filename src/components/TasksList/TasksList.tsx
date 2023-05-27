@@ -1,17 +1,14 @@
 import TasksListItem from './TasksListItem';
 
-const TasksList = () => {
-  return (
-    <ul className="task-list">
-      <span className="task-separator"></span>
-      <TasksListItem name={'я'} styleName="" />
-      <span className="task-separator"></span>
-      <TasksListItem name={'люблю'} styleName="task-completed" />
-      <span className="task-separator"></span>
-      <TasksListItem name={'Максима <3'} styleName="" />
-      <span className="task-separator"></span>
-    </ul>
-  );
+const TasksList = ({ todos }: any) => {
+  // console.log(todos);
+  const tasksList = todos.map((task: any) => {
+    const { id, title, completed } = task;
+
+    return <TasksListItem key={id} name={title} styleName={completed ? 'task-completed' : ''} />;
+  });
+
+  return <ul className="task-list">{tasksList}</ul>;
 };
 
 export default TasksList;

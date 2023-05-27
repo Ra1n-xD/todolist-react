@@ -1,5 +1,6 @@
 .task-list {
-  margin-top: 40px;
+  padding: 0;
+  margin: 35px 0;
 }
 
 .task-list-item {
