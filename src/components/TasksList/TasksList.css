@@ -1,0 +1,31 @@
+.task-list {
+  margin-top: 40px;
+}
+
+.task-list-item {
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.task-completed {
+  color: #757575;
+}
+
+.task-list li:hover {
+  background-color: rgb(75, 75, 75);
+}
+
+.task-separator {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: rgb(75, 75, 75);
+  margin: 0 auto;
+}

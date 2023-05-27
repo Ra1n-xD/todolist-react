@@ -12,13 +12,8 @@
   margin-right: 10px;
   border-radius: 10px;
   height: 40px;
-  width: 70%;
+  width: 65%;
   font-size: 15px;
   padding: 0 10px;
   border: 0px;
-}
-
-.btn-outline-light:hover {
-  background-color: #f8f9fa;
-  color: #000000;
 }
