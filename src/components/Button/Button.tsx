@@ -1,14 +1,13 @@
 import './Button.css';
 
-interface IButtonProps {
-  name: string;
-  styleName: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
-
 const Button = ({ name, styleName, onClick }: any) => {
+  const handleTaskClick = (e: any) => {
+    e.stopPropagation();
+    onClick();
+  };
+
   return (
-    <button type="button" className={styleName} onClick={onClick}>
+    <button type="button" className={styleName} onClick={handleTaskClick}>
       {name}
     </button>
   );

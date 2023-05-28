@@ -2,18 +2,14 @@ import Button from '../Button/Button';
 
 import './TasksList.css';
 
-const TasksListItem = ({ name, styleName }: { name: string; styleName: string }) => {
-  const handleTaskClick = () => {};
-
+const TasksListItem = ({ id, name, styleName, deleteTask, completeTask, favoritesTask }: any) => {
   return (
     <>
-      <li className={'task-list-item ' + styleName}>
-        <span className="task-label" onClick={handleTaskClick}>
-          {name}
-        </span>
+      <li className={'task-list-item ' + styleName} onClick={() => completeTask(id)}>
+        <span className="task-label">{name}</span>
         <div className="task-buttons">
-          <Button name={'В избранное'} styleName={'btn btn-favorite'} />
-          <Button name={'Удалить'} styleName={'btn btn-delete'} />
+          <Button name={'В избранное'} styleName={'btn btn-favorite ' + styleName} onClick={() => favoritesTask(id)} />
+          <Button name={'Удалить'} styleName={'btn btn-delete'} onClick={() => deleteTask(id)} />
         </div>
       </li>
       <span className="task-separator"></span>

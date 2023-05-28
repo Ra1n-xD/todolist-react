@@ -15,8 +15,21 @@
   cursor: pointer;
 }
 
+.tast-item-favorites {
+  border: 1px solid rgba(243, 207, 4, 0.7);
+}
+
 .task-completed {
   color: #757575;
+}
+
+.task-completed button:first-child {
+  visibility: hidden;
+}
+
+.task-completed button {
+  color: #9e9e9e;
+  border: 1px solid #757575;
 }
 
 .task-list li:hover {

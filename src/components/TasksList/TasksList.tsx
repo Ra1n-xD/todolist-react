@@ -1,11 +1,14 @@
 import TasksListItem from './TasksListItem';
 
-const TasksList = ({ todos }: any) => {
-  // console.log(todos);
+const TasksList = ({ todos, deleteTask, completeTask, favoritesTask }: any) => {
   const tasksList = todos.map((task: any) => {
-    const { id, title, completed } = task;
+    const { id, title, completed, favorites } = task;
 
-    return <TasksListItem key={id} name={title} styleName={completed ? 'task-completed' : ''} />;
+    let taskStyle = '';
+    if (completed) taskStyle += ' task-completed';
+    else if (favorites) taskStyle += ' tast-item-favorites';
+
+    return <TasksListItem key={id} id={id} name={title} styleName={taskStyle} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} />;
   });
 
   return <ul className="task-list">{tasksList}</ul>;
