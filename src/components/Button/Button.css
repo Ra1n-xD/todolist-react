@@ -9,6 +9,7 @@
 .btn-light {
   background-color: #f8f9fa;
   color: #212529;
+  border: 1px solid #797979;
 }
 
 .btn-outline-light {
