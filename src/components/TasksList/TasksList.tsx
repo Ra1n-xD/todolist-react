@@ -8,7 +8,19 @@ const TasksList = ({ todos, deleteTask, completeTask, favoritesTask, updateTaskN
     if (completed) taskStyle += ' task-completed';
     else if (favorites) taskStyle += ' tast-item-favorites';
 
-    return <TasksListItem key={id} id={id} name={title} styleName={taskStyle} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} updateTaskName={updateTaskName} />;
+    return (
+      <TasksListItem
+        key={id}
+        id={id}
+        name={title}
+        completed={completed}
+        styleName={taskStyle}
+        deleteTask={deleteTask}
+        completeTask={completeTask}
+        favoritesTask={favoritesTask}
+        updateTaskName={updateTaskName}
+      />
+    );
   });
 
   return (

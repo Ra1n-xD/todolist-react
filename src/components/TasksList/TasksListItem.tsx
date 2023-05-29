@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 
 import './TasksList.css';
 
-const TasksListItem = ({ id, name, styleName, deleteTask, completeTask, favoritesTask, updateTaskName }: any) => {
+const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTask, favoritesTask, updateTaskName }: any) => {
   const [newName, setNewName] = useState(name);
   const [editing, setEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -43,7 +43,7 @@ const TasksListItem = ({ id, name, styleName, deleteTask, completeTask, favorite
     <>
       <li className={'task-list-item ' + styleName}>
         <div className="task-details">
-          <input type="checkbox" onClick={() => completeTask(id)} className="checkbox-input" />
+          <input type="checkbox" checked={completed} onClick={() => completeTask(id)} className="checkbox-input" />
           <input
             type="text"
             value={newName}
