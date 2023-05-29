@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../Button/Button';
+import Modal from '../Modal/Modal'; // Подставьте ваш компонент модального окна
 
 import './TasksList.css';
 
@@ -7,6 +8,8 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
   const [newName, setNewName] = useState(name);
   const [editing, setEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [description, setDescription] = useState('');
 
   const handleNameClick = (e: any) => {
     e.stopPropagation();
@@ -39,6 +42,18 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
     }
   };
 
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleDescriptionChange = (e: any) => {
+    setDescription(e.target.value);
+  };
+
   return (
     <>
       <li className={'task-list-item ' + styleName}>
@@ -57,12 +72,36 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
           />
         </div>
         <div className="task-buttons">
-          {editing && <Button name={'Сохранить'} styleName="btn btn-outline-light" onClick={handleSaveClick} />}
-          <Button name={'В избранное'} styleName={'btn btn-favorite ' + styleName} onClick={() => favoritesTask(id)} />
-          <Button name={'Удалить'} styleName={'btn btn-delete'} onClick={() => deleteTask(id)} />
+          {editing && <Button styleName="btn btn-outline-light" onClick={handleSaveClick} type={'save'} />}
+          <Button styleName={'btn btn-delete'} onClick={handleModalOpen} type={'modal'} />
+          <Button styleName={'btn btn-favorite ' + styleName} onClick={() => favoritesTask(id)} type={'favorite'} />
+          <Button styleName={'btn btn-delete'} onClick={() => deleteTask(id)} type={'delete'} />
         </div>
       </li>
       <span className="task-separator"></span>
+      {modalOpen && (
+        <Modal onClose={handleModalClose} deleteTask={() => deleteTask(id)} onUpdate={handleSaveClick} favoritesTask={() => favoritesTask(id)}>
+          <input
+            type="text"
+            value={newName}
+            className="editable-field"
+            onChange={handleInputChange}
+            onClick={handleNameClick}
+            onBlur={handleInputBlur}
+            onKeyDown={handleInputKeyDown}
+            readOnly={!editing}
+            autoFocus={isFocused}
+          />
+
+          <span className="task-separator"></span>
+          <textarea value={description} onChange={handleDescriptionChange} />
+          <span className="task-separator"></span>
+          <div className="task-buttons">
+            <Button styleName={'btn btn-favorite ' + styleName} onClick={() => favoritesTask(id)} type={'favorite'} />
+            <Button styleName={'btn btn-delete'} onClick={() => deleteTask(id)} type={'delete'} />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

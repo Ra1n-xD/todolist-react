@@ -24,8 +24,8 @@
   border-radius: 5px;
 }
 
-.tast-item-favorites {
-  border: 1px solid rgba(243, 207, 4, 0.7);
+.tast-item-favorites .checkbox-input {
+  border: 2px solid rgba(243, 207, 4, 1);
 }
 
 .task-completed {
@@ -56,7 +56,7 @@
 .task-details {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 85%;
 }
 
 .task-buttons {

@@ -9,15 +9,16 @@ import './App.css';
 interface ITask {
   id: number;
   title: string;
+  description: string;
   completed: boolean;
   favorites: boolean;
 }
 
 const App = () => {
   const [todos, setTodos] = useState<ITask[]>([
-    { id: Math.random() * 1000, title: 'Максим', completed: false, favorites: false },
-    { id: Math.random() * 1000, title: 'Не', completed: false, favorites: false },
-    { id: Math.random() * 1000, title: 'Лох', completed: false, favorites: false }
+    { id: Math.random() * 1000, title: 'Максим', completed: false, favorites: false, description: 'aboba' },
+    { id: Math.random() * 1000, title: 'Не', completed: false, favorites: false, description: 'aboba' },
+    { id: Math.random() * 1000, title: 'Лох', completed: false, favorites: false, description: 'aboba' }
   ]);
 
   const addTask = (titleTask: string) => {
@@ -25,7 +26,8 @@ const App = () => {
       id: Math.random() * 1000,
       title: titleTask,
       completed: false,
-      favorites: false
+      favorites: false,
+      description: ''
     };
 
     setTodos((prevTodos) => [newTask, ...prevTodos]);
