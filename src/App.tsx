@@ -61,6 +61,17 @@ const App = () => {
     );
   };
 
+  const updateTaskName = (id: any, newName: any) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((task) => {
+        if (task.id === id) {
+          return { ...task, title: newName };
+        }
+        return task;
+      })
+    );
+  };
+
   const filterTasks = (filter: string) => {
     switch (filter) {
       case 'all':
@@ -87,7 +98,7 @@ const App = () => {
       <AppInfo todos={todos} />
       <TasksFilter handleFilterChange={handleFilterChange} selectedFilter={filter} />
       <AddTask addTask={addTask} />
-      <TasksList todos={visibleTodos} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} />
+      <TasksList todos={visibleTodos} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} updateTaskName={updateTaskName} />
     </div>
   );
 };
