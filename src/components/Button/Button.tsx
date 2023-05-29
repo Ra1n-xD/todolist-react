@@ -1,6 +1,6 @@
-import './Button.css';
 import { FaHeart, FaTrashAlt, FaCheck } from 'react-icons/fa';
 import { TbAlignBoxLeftTop } from 'react-icons/tb';
+import './Button.css';
 
 const Button = ({ name, styleName, onClick, type }: any) => {
   let icon;
