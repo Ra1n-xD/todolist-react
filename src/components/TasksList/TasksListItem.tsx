@@ -67,10 +67,10 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
           />
         </div>
         <div className="task-buttons">
-          {editing && <Button styleName="btn btn-outline-light" onClick={handleSaveClick} type={'save'} />}
-          <Button styleName="btn btn-outline-light" onClick={handleModalOpen} icon={'modal'} />
-          <Button styleName="btn btn-favorite" onClick={() => favoritesTask(id)} icon={'favorite'} />
-          <Button styleName="btn btn-delete" onClick={() => deleteTask(id)} icon={'delete'} />
+          {editing && <Button styleName="btn btn-outline-light" onClick={handleSaveClick} icon="save" />}
+          <Button styleName="btn btn-outline-light" onClick={handleModalOpen} icon="modal" />
+          <Button styleName="btn btn-favorite" onClick={() => favoritesTask(id)} icon="favorite" />
+          <Button styleName="btn btn-delete" onClick={() => deleteTask(id)} icon="delete" />
         </div>
       </li>
       <span className="task-separator"></span>
