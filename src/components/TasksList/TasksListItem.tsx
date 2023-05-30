@@ -53,7 +53,7 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
     <>
       <li className={'task-list-item ' + styleName}>
         <div className="task-details">
-          <input type="checkbox" checked={completed} onClick={() => completeTask(id)} className="checkbox-input" />
+          <input type="checkbox" checked={completed} onChange={() => completeTask(id)} className="checkbox-input" />
           <input
             type="text"
             value={newName}
@@ -78,7 +78,7 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
       {modalOpen && (
         <Modal onClose={handleModalClose} id={id} styleName={styleName} deleteTask={() => deleteTask(id)} newName={newName} onUpdate={handleSaveClick} favoritesTask={() => favoritesTask(id)}>
           <div className="task-details">
-            <input type="checkbox" checked={completed} onClick={() => completeTask(id)} className="checkbox-input" />
+            <input type="checkbox" checked={completed} onChange={() => completeTask(id)} className="checkbox-input" />
             <input
               type="text"
               value={newName}
