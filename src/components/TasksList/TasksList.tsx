@@ -25,7 +25,7 @@ const TasksList = ({ todos, deleteTask, completeTask, favoritesTask, updateTaskN
 
   return (
     <div className="task-container">
-      <p className="task-name">Входящие</p>
+      <h2 className="task-header">Входящие</h2>
       <ul className="task-list">{tasksList}</ul>
     </div>
   );

@@ -2,21 +2,23 @@ import { FaHeart, FaTrashAlt, FaCheck } from 'react-icons/fa';
 import { TbAlignBoxLeftTop } from 'react-icons/tb';
 import './Button.css';
 
-const Button = ({ name, styleName, onClick, type }: any) => {
-  let icon;
-  if (type === 'favorite') icon = <FaHeart />;
-  else if (type === 'delete') icon = <FaTrashAlt />;
-  else if (type === 'save') icon = <FaCheck />;
-  else if (type === 'modal') icon = <TbAlignBoxLeftTop />;
+const Button = ({ name, styleName, type, onClick, icon }: any) => {
+  if (icon) {
+    if (icon === 'favorite') icon = <FaHeart />;
+    else if (icon === 'delete') icon = <FaTrashAlt />;
+    else if (icon === 'save') icon = <FaCheck />;
+    else if (icon === 'modal') icon = <TbAlignBoxLeftTop />;
+  }
 
-  const handleTaskClick = (e: any) => {
+  const handleButtonClick = (e: any) => {
+    e.preventDefault();
     e.stopPropagation();
     onClick();
   };
 
   return (
-    <button type="button" className={styleName} onClick={handleTaskClick}>
-      {type ? icon : name}
+    <button type={type || 'button'} className={styleName} onClick={handleButtonClick}>
+      {icon ? icon : name}
     </button>
   );
 };

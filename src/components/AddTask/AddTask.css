@@ -1,13 +1,12 @@
 .add-form {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 0 10px;
+  margin-top: 20px;
 }
 
 .form-control {
   flex: 1;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.7);
   color: #f8f9fa;
   margin-right: 10px;
   border-radius: 6px;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../Button/Button';
 
 import './AddTask.css';
 
@@ -10,7 +11,6 @@ const AddTask = ({ addTask }: any) => {
   }
 
   function handleClick(e: any) {
-    e.preventDefault();
     if (value.trim().length < 1) return;
     addTask(value);
     setValue('');
@@ -20,9 +20,7 @@ const AddTask = ({ addTask }: any) => {
     <div className="app-add-form">
       <form className="add-form">
         <input type="text" className="form-control" value={value} placeholder="Добавить задачу" onChange={handleChange} />
-        <button type="submit" className="btn btn-outline-light" onClick={handleClick}>
-          Добавить
-        </button>
+        <Button type="submit" styleName="btn btn-outline-light" onClick={handleClick} name="Добавить" />
       </form>
     </div>
   );

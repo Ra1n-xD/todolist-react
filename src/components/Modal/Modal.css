@@ -31,7 +31,7 @@
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #999;
+  color: #bebaba;
 }
 
 .modal-body {
@@ -39,15 +39,8 @@
   flex-direction: column;
 }
 
-.modal-body input {
-  display: block;
-  margin-bottom: 20px;
-  padding: 8px;
-  border: none;
+.modal-body .editable-field {
   font-size: 25px;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .modal-body textarea {
@@ -72,4 +65,8 @@
   margin-top: 20px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.modal-task {
+  margin-bottom: 10px;
 }
