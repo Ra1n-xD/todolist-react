@@ -46,6 +46,17 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
     setModalOpen(false);
   };
 
+  const autoResizeTextarea = (e: any) => {
+    e.style.height = '40px';
+    e.style.height = `${e.scrollHeight}px`;
+  };
+
+  const handleTextareaRef = (e: any) => {
+    if (e) {
+      autoResizeTextarea(e);
+    }
+  };
+
   return (
     <>
       <li className={'task-list-item ' + styleName}>
@@ -55,7 +66,7 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
             type="text"
             value={newName}
             className="editable-field"
-            onChange={handleInputChange}
+            onChange={(e) => setNewName(e.target.value)}
             onClick={handleNameClick}
             onBlur={handleInputBlur}
             onKeyDown={handleInputKeyDown}
@@ -75,16 +86,16 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
         <Modal onClose={handleModalClose} id={id} styleName={styleName} deleteTask={() => deleteTask(id)} newName={newName} favoritesTask={() => favoritesTask(id)}>
           <div className="task-details">
             <input type="checkbox" checked={completed} onChange={() => completeTask(id)} className="checkbox-input" />
-            <input
-              type="text"
+            <textarea
               value={newName}
-              className="editable-field"
+              className="modal-title"
               onChange={handleInputChange}
               onClick={handleNameClick}
               onBlur={handleInputBlur}
               onKeyDown={handleInputKeyDown}
               readOnly={!editing}
               autoFocus={isFocused}
+              ref={handleTextareaRef}
             />
           </div>
         </Modal>

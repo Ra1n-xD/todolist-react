@@ -12,6 +12,10 @@
   color: white;
 }
 
+.modal-task {
+  margin-bottom: 15px;
+}
+
 .modal-content {
   background-color: #252525;
   padding: 20px;
@@ -39,27 +43,6 @@
   flex-direction: column;
 }
 
-.modal-body .editable-field {
-  font-size: 23px;
-}
-
-.modal-description {
-  display: block;
-  background-color: inherit;
-  color: inherit;
-  margin: 15px 0;
-  padding: 8px;
-  border: none;
-  font-size: 16px;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  resize: vertical;
-  height: 300px;
-  outline: none;
-  resize: none;
-}
-
 .modal-body button {
   padding: 8px 16px;
   margin-top: 20px;
@@ -67,6 +50,25 @@
   box-sizing: border-box;
 }
 
-.modal-task {
-  margin-bottom: 10px;
+.modal-body textarea {
+  display: block;
+  background-color: inherit;
+  color: inherit;
+  outline: none;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  border: none;
+}
+
+.modal-title {
+  font-size: 30px;
+  max-height: 260px;
+}
+
+.modal-description {
+  margin: 15px 0;
+  padding: 8px;
+  font-size: 16px;
+  height: 300px;
 }
