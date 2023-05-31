@@ -1,12 +1,12 @@
-import { FaHeart, FaTrashAlt, FaCheck } from 'react-icons/fa';
+import { FaHeart, FaTrashAlt } from 'react-icons/fa';
 import { TbAlignBoxLeftTop } from 'react-icons/tb';
+
 import './Button.css';
 
 const Button = ({ name, styleName, type, onClick, icon }: any) => {
   if (icon) {
     if (icon === 'favorite') icon = <FaHeart />;
     else if (icon === 'delete') icon = <FaTrashAlt />;
-    else if (icon === 'save') icon = <FaCheck />;
     else if (icon === 'modal') icon = <TbAlignBoxLeftTop />;
   }
 

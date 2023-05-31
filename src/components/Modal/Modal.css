@@ -40,10 +40,10 @@
 }
 
 .modal-body .editable-field {
-  font-size: 25px;
+  font-size: 23px;
 }
 
-.modal-body textarea {
+.modal-description {
   display: block;
   background-color: inherit;
   color: inherit;

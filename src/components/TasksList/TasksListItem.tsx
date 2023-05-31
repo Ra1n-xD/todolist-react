@@ -10,16 +10,16 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
   const [isFocused, setIsFocused] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const handleSave = () => {
+    updateTaskName(id, newName);
+    setEditing(false);
+    setIsFocused(false);
+  };
+
   const handleNameClick = (e: any) => {
     e.stopPropagation();
     setEditing(true);
     setIsFocused(true);
-  };
-
-  const handleSaveClick = () => {
-    updateTaskName(id, newName);
-    setEditing(false);
-    setIsFocused(false);
   };
 
   const handleInputChange = (e: any) => {
@@ -28,16 +28,13 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
 
   const handleInputBlur = () => {
     if (editing) {
-      handleSaveClick();
+      handleSave();
     }
   };
 
   const handleInputKeyDown = (e: any) => {
-    if (e.key === 'Enter') {
-      if (editing) {
-        handleSaveClick();
-        setIsFocused(false);
-      }
+    if (e.key === 'Escape' || e.key === 'Enter') {
+      handleSave();
     }
   };
 
@@ -67,7 +64,6 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
           />
         </div>
         <div className="task-buttons">
-          {editing && <Button styleName="btn btn-outline-light" onClick={handleSaveClick} icon="save" />}
           <Button styleName="btn btn-outline-light" onClick={handleModalOpen} icon="modal" />
           <Button styleName="btn btn-favorite" onClick={() => favoritesTask(id)} icon="favorite" />
           <Button styleName="btn btn-delete" onClick={() => deleteTask(id)} icon="delete" />
@@ -76,7 +72,7 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
       <span className="task-separator"></span>
 
       {modalOpen && (
-        <Modal onClose={handleModalClose} id={id} styleName={styleName} deleteTask={() => deleteTask(id)} newName={newName} onUpdate={handleSaveClick} favoritesTask={() => favoritesTask(id)}>
+        <Modal onClose={handleModalClose} id={id} styleName={styleName} deleteTask={() => deleteTask(id)} newName={newName} favoritesTask={() => favoritesTask(id)}>
           <div className="task-details">
             <input type="checkbox" checked={completed} onChange={() => completeTask(id)} className="checkbox-input" />
             <input
