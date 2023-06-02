@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import Button from '../Button/Button';
 
 import './Modal.css';
 
-const Modal = ({ id, styleName, onClose, deleteTask, onUpdate, favoritesTask, newName, children }: any) => {
-  const [description, setDescription] = useState('');
-
+const Modal = ({ id, styleName, onClose, deleteTask, description, favoritesTask, updateTaskDescription, children }: any) => {
   const handleDescriptionChange = (e: any) => {
-    setDescription(e.target.value);
+    updateTaskDescription(id, e.target.value);
   };
 
   return (

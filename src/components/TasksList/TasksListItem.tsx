@@ -4,7 +4,7 @@ import Modal from '../Modal/Modal';
 
 import './TasksList.css';
 
-const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTask, favoritesTask, updateTaskName }: any) => {
+const TasksListItem = ({ id, name, description, completed, styleName, deleteTask, completeTask, favoritesTask, updateTaskName, updateTaskDescription }: any) => {
   const [newName, setNewName] = useState(name);
   const [editing, setEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -83,7 +83,16 @@ const TasksListItem = ({ id, name, completed, styleName, deleteTask, completeTas
       <span className="task-separator"></span>
 
       {modalOpen && (
-        <Modal onClose={handleModalClose} id={id} styleName={styleName} deleteTask={() => deleteTask(id)} newName={newName} favoritesTask={() => favoritesTask(id)}>
+        <Modal
+          onClose={handleModalClose}
+          id={id}
+          styleName={styleName}
+          deleteTask={() => deleteTask(id)}
+          newName={newName}
+          description={description}
+          updateTaskDescription={updateTaskDescription}
+          favoritesTask={() => favoritesTask(id)}
+        >
           <div className="task-details">
             <input type="checkbox" checked={completed} onChange={() => completeTask(id)} className="checkbox-input" />
             <textarea

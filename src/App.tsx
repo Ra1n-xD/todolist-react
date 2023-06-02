@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddTask from './components/AddTask/AddTask';
 import AppInfo from './components/AppInfo/AppInfo';
 import TasksList from './components/TasksList/TasksList';
@@ -15,15 +15,22 @@ interface ITask {
 }
 
 const App = () => {
-  const [todos, setTodos] = useState<ITask[]>([
-    { id: Math.random() * 1000, title: 'Максим', completed: false, favorites: false, description: 'aboba' },
-    { id: Math.random() * 1000, title: 'Не', completed: false, favorites: false, description: 'aboba' },
-    { id: Math.random() * 1000, title: 'Лох', completed: false, favorites: false, description: 'aboba' }
-  ]);
+  const saveTasksToLocalStorage = (tasks: ITask[]) => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  };
+
+  const savedTasks = localStorage.getItem('tasks');
+  const initialTasks = savedTasks ? JSON.parse(savedTasks) : [];
+
+  const [todos, setTodos] = useState<ITask[]>(initialTasks);
+
+  useEffect(() => {
+    saveTasksToLocalStorage(todos);
+  }, [todos]);
 
   const addTask = (titleTask: string) => {
     const newTask: ITask = {
-      id: Math.random() * 1000,
+      id: Math.floor(Math.random() * 10000),
       title: titleTask,
       completed: false,
       favorites: false,
@@ -74,6 +81,17 @@ const App = () => {
     );
   };
 
+  const updateTaskDescription = (id: any, newDescription: any) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((task) => {
+        if (task.id === id) {
+          return { ...task, description: newDescription };
+        }
+        return task;
+      })
+    );
+  };
+
   const filterTasks = (filter: string) => {
     switch (filter) {
       case 'all':
@@ -100,7 +118,7 @@ const App = () => {
       <AppInfo todos={todos} />
       <TasksFilter handleFilterChange={handleFilterChange} selectedFilter={filter} />
       <AddTask addTask={addTask} />
-      <TasksList todos={visibleTodos} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} updateTaskName={updateTaskName} />
+      <TasksList todos={visibleTodos} deleteTask={deleteTask} completeTask={completeTask} favoritesTask={favoritesTask} updateTaskName={updateTaskName} updateTaskDescription={updateTaskDescription} />
     </div>
   );
 };
