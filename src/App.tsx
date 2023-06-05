@@ -15,18 +15,41 @@ interface ITask {
 }
 
 const App = () => {
+  const startOfUse: ITask[] = [
+    {
+      id: -1,
+      title: 'Добро пожаловать в самую крутую тудушку, посмотри описание',
+      completed: false,
+      favorites: false,
+      description: 'Данная тудушка имеет следующий функционал...\n\nНу тут я типо дал гайд чо и как тут работает =)'
+    }
+  ];
+
   const saveTasksToLocalStorage = (tasks: ITask[]) => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    try {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    } catch (error) {
+      localStorage.setItem('tasks', JSON.stringify([]));
+      console.error('Ошибка сохранения данных в localStorage:', error);
+    }
   };
 
-  const savedTasks = localStorage.getItem('tasks');
-  const initialTasks = savedTasks ? JSON.parse(savedTasks) : [];
+  const getTasksFromLocalStorage = () => {
+    try {
+      const savedTasks = localStorage.getItem('tasks');
+      return savedTasks ? JSON.parse(savedTasks) : startOfUse;
+    } catch (error) {
+      console.error('Ошибка получения данных из localStorage:', error);
+      return [{ id: -2, title: 'Ты долбаеб, ты как умудрился сломать localstorage?', completed: false, favorites: false, description: '' }];
+    }
+  };
 
-  const [todos, setTodos] = useState<ITask[]>(initialTasks);
+  const initialTasks = getTasksFromLocalStorage();
+  const [todos, setTodos] = useState(initialTasks);
 
   useEffect(() => {
     saveTasksToLocalStorage(todos);
-  }, [todos]);
+  });
 
   const addTask = (titleTask: string) => {
     const newTask: ITask = {
@@ -37,15 +60,15 @@ const App = () => {
       description: ''
     };
 
-    setTodos((prevTodos) => [newTask, ...prevTodos]);
+    setTodos((prevTodos: ITask[]) => [newTask, ...prevTodos]);
   };
 
   const deleteTask = (id: number) => {
-    setTodos((prevTodos) => prevTodos.filter((task) => task.id !== id));
+    setTodos((prevTodos: ITask[]) => prevTodos.filter((task) => task.id !== id));
   };
 
   const completeTask = (id: number) => {
-    setTodos((prevTodos) => {
+    setTodos((prevTodos: ITask[]) => {
       const newTodos = prevTodos.map((task: any) => {
         if (task.id === id) {
           return { ...task, completed: !task.completed, favorites: false };
@@ -60,7 +83,7 @@ const App = () => {
   };
 
   const favoritesTask = (id: number) => {
-    setTodos((prevTodos) =>
+    setTodos((prevTodos: ITask[]) =>
       prevTodos.map((task) => {
         if (task.id === id) {
           return { ...task, favorites: !task.favorites };
@@ -71,7 +94,7 @@ const App = () => {
   };
 
   const updateTaskName = (id: any, newName: any) => {
-    setTodos((prevTodos) =>
+    setTodos((prevTodos: ITask[]) =>
       prevTodos.map((task) => {
         if (task.id === id) {
           return { ...task, title: newName };
@@ -82,7 +105,7 @@ const App = () => {
   };
 
   const updateTaskDescription = (id: any, newDescription: any) => {
-    setTodos((prevTodos) =>
+    setTodos((prevTodos: ITask[]) =>
       prevTodos.map((task) => {
         if (task.id === id) {
           return { ...task, description: newDescription };
@@ -97,9 +120,9 @@ const App = () => {
       case 'all':
         return todos;
       case 'incomplete':
-        return todos.filter((task) => !task.completed);
+        return todos.filter((task: ITask) => !task.completed);
       case 'favorites':
-        return todos.filter((task) => task.favorites);
+        return todos.filter((task: ITask) => task.favorites);
       default:
         return todos;
     }
