@@ -84,8 +84,8 @@ const TasksListItem = ({ id, name, description, completed, styleName, deleteTask
 
       {modalOpen && (
         <Modal
-          onClose={handleModalClose}
           id={id}
+          onClose={handleModalClose}
           styleName={styleName}
           deleteTask={() => deleteTask(id)}
           newName={newName}

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from '../Button/Button';
 
 import './Modal.css';
@@ -6,6 +7,20 @@ const Modal = ({ id, styleName, onClose, deleteTask, description, favoritesTask,
   const handleDescriptionChange = (e: any) => {
     updateTaskDescription(id, e.target.value);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: any) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   return (
     <div className="modal-overlay" onClick={onClose}>
