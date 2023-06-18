@@ -48,8 +48,9 @@ const App = () => {
   const [todos, setTodos] = useState(initialTasks);
 
   useEffect(() => {
+    console.log('123');
     saveTasksToLocalStorage(todos);
-  });
+  }, [todos]);
 
   const addTask = (titleTask: string) => {
     const newTask: ITask = {
