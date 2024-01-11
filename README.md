@@ -1,6 +1,6 @@
 # React Todo Application
 
-**Стек:** React, TS, Bootstrap
+**Стек:** React, React Router, TS, Bootstrap
 
 ## Оглавление
 - [Функции](#функции)
